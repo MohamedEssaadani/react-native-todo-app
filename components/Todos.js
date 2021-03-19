@@ -9,6 +9,10 @@ const Todo = () => {
       title: "Drink some coffee",
       key: "1",
     },
+    {
+      title: "Learn",
+      key: "2",
+    },
   ])
 
   const handleSubmit = (text) => {
@@ -17,12 +21,30 @@ const Todo = () => {
     })
   }
 
+  const handleDelete = (key) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.key !== key)
+    })
+  }
+
+  const handleEdit = (key, text) => {
+    let newTodos = [...todos]
+    newTodos[key].title = text
+    this.setState(newTodos)
+  }
+
   return (
     <View style={styles.container}>
       <AddTodo handleSubmit={handleSubmit} />
       <FlatList
         data={todos}
-        renderItem={({ item }) => <TodoItem todo={item} />}
+        renderItem={({ item }) => (
+          <TodoItem
+            todo={item}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
+        )}
       />
     </View>
   )

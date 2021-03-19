@@ -2,13 +2,10 @@ import React from "react"
 import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
 
-function TodoItem({ todo }) {
+function TodoItem({ todo, handleDelete, handleEdit }) {
   return (
     <View style={{ flexDirection: "row" }}>
-      <View style={styles.todo}>
-        <TextInput value={todo.title} />
-      </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => handleDelete(todo.key)}>
         <MaterialIcons
           name="delete"
           color="#fff"
@@ -16,6 +13,12 @@ function TodoItem({ todo }) {
           style={styles.touchable}
         />
       </TouchableOpacity>
+      <View style={styles.todo}>
+        <TextInput
+          value={todo.title}
+          onChangeText={(text) => handleEdit(todo.key, text)}
+        />
+      </View>
     </View>
   )
 }
@@ -32,13 +35,9 @@ const styles = StyleSheet.create({
     borderStyle: "dashed",
   },
   touchable: {
-    marginTop: 16,
-    marginLeft: 16,
+    margin: 16,
     padding: 18,
     backgroundColor: "orange",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
     borderRadius: 15,
   },
 })
