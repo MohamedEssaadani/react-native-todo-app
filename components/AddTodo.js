@@ -1,22 +1,30 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import {
   View,
   TextInput,
   Text,
   TouchableOpacity,
   StyleSheet,
-} from "react-native"
-import { MaterialIcons } from "@expo/vector-icons"
+  Alert,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 function AddTodo({ handleSubmit }) {
-  const [text, setText] = useState("")
+  const [text, setText] = useState("");
 
   const handlePress = () => {
-    if (text) {
-      handleSubmit(text)
-      setText("")
+    if (text.length > 3) {
+      handleSubmit(text);
+      setText("");
+    } else {
+      Alert.alert("Warning!", "Todos must be over 3 chars long!", [
+        {
+          text: "Understood",
+          onPress: () => console.log("Alert Closed!"),
+        },
+      ]);
     }
-  }
+  };
   return (
     <View>
       <TextInput
@@ -29,7 +37,7 @@ function AddTodo({ handleSubmit }) {
         <Text style={{ color: "#fff", paddingLeft: 5 }}>Add New</Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -42,6 +50,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 10,
   },
-})
+});
 
-export default AddTodo
+export default AddTodo;

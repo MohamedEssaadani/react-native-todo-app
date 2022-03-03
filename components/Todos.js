@@ -29,7 +29,8 @@ const Todo = () => {
 
   const handleEdit = (key, text) => {
     let newTodos = [...todos];
-    newTodos[key].title = text;
+    let index = todos.findIndex((todo) => todo.key === key);
+    newTodos[index].title = text;
     setTodos(newTodos);
   };
 
