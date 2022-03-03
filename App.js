@@ -1,14 +1,26 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Keyboard,
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+} from "react-native";
 import Header from "./components/Header";
 import Todos from "./components/Todos";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Header />
-      <Todos />
-    </View>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+        console.log("dismissed");
+      }}
+    >
+      <View style={styles.container}>
+        <Header />
+        <Todos />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 

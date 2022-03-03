@@ -35,27 +35,32 @@ const Todo = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.content}>
       <AddTodo handleSubmit={handleSubmit} />
-      <FlatList
-        data={todos}
-        renderItem={({ item }) => (
-          <TodoItem
-            todo={item}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-          />
-        )}
-      />
+      <View style={styles.list}>
+        <FlatList
+          data={todos}
+          renderItem={({ item }) => (
+            <TodoItem
+              todo={item}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
+            />
+          )}
+        />
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 40,
-    paddingTop: 40,
-    paddingHorizontal: 20,
+  content: {
+    // take available space
+    flex: 1,
+    padding: 30,
     backgroundColor: "#fff",
+  },
+  list: {
+    flex: 1,
   },
 });
 export default Todo;

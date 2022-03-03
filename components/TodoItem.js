@@ -4,16 +4,16 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 function TodoItem({ todo, handleDelete, handleEdit }) {
   return (
-    <View style={{ flexDirection: "row" }}>
-      <TouchableOpacity onPress={() => handleDelete(todo.key)}>
-        <MaterialIcons
-          name="delete"
-          color="#fff"
-          size={25}
-          style={styles.touchable}
-        />
-      </TouchableOpacity>
+    <View>
       <View style={styles.todo}>
+        <TouchableOpacity onPress={() => handleDelete(todo.key)}>
+          <MaterialIcons
+            name="delete"
+            color="#fff"
+            size={25}
+            style={styles.touchable}
+          />
+        </TouchableOpacity>
         <TextInput
           value={todo.title}
           onChangeText={(text) => handleEdit(todo.key, text)}
@@ -25,14 +25,13 @@ function TodoItem({ todo, handleDelete, handleEdit }) {
 
 const styles = StyleSheet.create({
   todo: {
-    marginTop: 16,
-    padding: 18,
-    paddingHorizontal: 50,
+    marginTop: 10,
     fontSize: 16,
     borderColor: "orange",
     borderRadius: 8,
     borderWidth: 1,
     borderStyle: "dashed",
+    flexDirection: "row",
   },
   touchable: {
     margin: 16,
